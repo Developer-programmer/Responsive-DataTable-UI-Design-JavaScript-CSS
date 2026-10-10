@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f3f4f0">
+    <title>Accounts | Fieldnotes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#accounts" aria-label="Fieldnotes home">
+          <span class="brand-mark"><i class="bi bi-grid-1x2-fill" aria-hidden="true"></i></span>
+          <span>fieldnotes<span class="brand-period">.</span></span>
+        </a>
+
+        <div class="workspace-label">WORKSPACE</div>
+        <nav class="nav flex-column sidebar-nav">
+          <a class="nav-link" href="#overview"><i class="bi bi-columns-gap" aria-hidden="true"></i>Overview</a>
+          <a class="nav-link active" href="#accounts" aria-current="page"><i class="bi bi-buildings" aria-hidden="true"></i>Accounts<span class="nav-count" id="nav-account-count">8</span></a>
+          <a class="nav-link" href="#invoices"><i class="bi bi-receipt" aria-hidden="true"></i>Invoices</a>
+          <a class="nav-link" href="#reports"><i class="bi bi-bar-chart-line" aria-hidden="true"></i>Reports</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="workspace-label">YOUR TEAM</div>
+          <div class="team-row"><span class="team-avatar">JL</span><span>Jordan Lee</span><i class="bi bi-three-dots ms-auto" aria-hidden="true"></i></div>
+          <div class="sidebar-foot"><span class="status-dot"></span> All systems operational</div>
+        </div>
+      </aside>
+
+      <main class="main-content" id="accounts">
+        <header class="topbar">
+          <div class="breadcrumb-line"><span>Workspace</span><i class="bi bi-chevron-right" aria-hidden="true"></i><strong>Accounts</strong></div>
+          <div class="topbar-actions">
+            <button class="icon-button notification-button" type="button" aria-label="Notifications"><i class="bi bi-bell" aria-hidden="true"></i><span class="notification-dot"></span></button>
+            <span class="topbar-divider"></span>
+            <button class="profile-button" type="button" aria-label="Jordan Lee's profile"><span class="profile-avatar">JL</span><i class="bi bi-chevron-down" aria-hidden="true"></i></button>
+          </div>
+        </header>
+
+        <section class="page-content" aria-labelledby="page-title">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow"><span class="eyebrow-line"></span> CUSTOMER RELATIONSHIPS</div>
+              <h1 id="page-title">Accounts<span class="heading-period">.</span></h1>
+              <p class="page-subtitle">A clear view of the people behind the numbers.</p>
+            </div>
+            <button class="btn btn-add" type="button" data-bs-toggle="modal" data-bs-target="#addAccountModal">
+              <i class="bi bi-plus-lg" aria-hidden="true"></i><span>Add account</span>
+            </button>
+          </div>
+
+          <div class="metrics-row" aria-label="Account summary">
+            <div class="metric"><span class="metric-label">TOTAL ACCOUNTS</span><span class="metric-value" id="total-count">8</span><span class="metric-note">in your workspace</span></div>
+            <div class="metric"><span class="metric-label">ACTIVE</span><span class="metric-value" id="active-count">5</span><span class="metric-note"><span class="mini-dot active-dot"></span>in good standing</span></div>
+            <div class="metric"><span class="metric-label">MONTHLY REVENUE</span><span class="metric-value" id="revenue-total">$5,600</span><span class="metric-note">across active accounts</span></div>
+            <div class="metric metric-date"><span class="metric-label">NEXT RENEWAL</span><span class="metric-value" id="next-renewal">Nov 9</span><span class="metric-note" id="next-renewal-name">Good Company</span></div>
+          </div>
+
+          <section class="table-section" aria-label="Account directory">
+            <div class="table-toolbar">
+              <div class="filter-tabs" role="group" aria-label="Filter accounts by status">
+                <button class="filter-tab active" type="button" data-status="all" aria-pressed="true">All <span id="count-all">8</span></button>
+                <button class="filter-tab" type="button" data-status="Active" aria-pressed="false">Active <span id="count-active">5</span></button>
+                <button class="filter-tab" type="button" data-status="Trial" aria-pressed="false">Trial <span id="count-trial">1</span></button>
+                <button class="filter-tab" type="button" data-status="Past due" aria-pressed="false">Past due <span id="count-past-due">1</span></button>
+                <button class="filter-tab" type="button" data-status="Paused" aria-pressed="false">Paused <span id="count-paused">1</span></button>
+              </div>
+              <div class="toolbar-actions">
+                <label class="search-box" for="account-search">
+                  <i class="bi bi-search" aria-hidden="true"></i>
+                  <input id="account-search" type="search" placeholder="Search accounts" autocomplete="off">
+                  <kbd>/</kbd>
+                </label>
+                <button class="btn btn-export" id="export-button" type="button"><i class="bi bi-arrow-down-to-line" aria-hidden="true"></i><span>Export</span></button>
+              </div>
+            </div>
+
+            <div class="table-responsive account-table-wrap">
+              <table class="table account-table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col"><button class="sort-button" type="button" data-sort="name">Account <i class="bi bi-arrow-down-up" aria-hidden="true"></i></button></th>
+                    <th scope="col"><button class="sort-button" type="button" data-sort="plan">Plan <i class="bi bi-arrow-down-up" aria-hidden="true"></i></button></th>
+                    <th scope="col"><button class="sort-button" type="button" data-sort="mrr">Monthly spend <i class="bi bi-arrow-down-up" aria-hidden="true"></i></button></th>
+                    <th scope="col"><button class="sort-button" type="button" data-sort="renewal">Next invoice <i class="bi bi-arrow-down-up" aria-hidden="true"></i></button></th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="account-rows"></tbody>
+              </table>
+              <div class="empty-state d-none" id="empty-state">
+                <span class="empty-icon"><i class="bi bi-search" aria-hidden="true"></i></span>
+                <strong>No accounts found</strong>
+                <span>Try another search or status filter.</span>
+                <button class="btn btn-reset d-none" id="reset-search" type="button">Clear search</button>
+              </div>
+            </div>
+
+            <footer class="table-footer">
+              <span class="result-count" id="result-count">Showing <strong>1–5</strong> of <strong>8</strong> accounts</span>
+              <div class="pagination-controls">
+                <label class="per-page-label" for="page-size">Rows per page</label>
+                <select id="page-size" class="form-select form-select-sm" aria-label="Rows per page">
+                  <option value="5" selected>5</option>
+                  <option value="8">8</option>
+                </select>
+                <span class="page-indicator" id="page-indicator">Page 1 of 2</span>
+                <button class="page-button" id="previous-page" type="button" aria-label="Previous page" disabled><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+                <button class="page-button" id="next-page" type="button" aria-label="Next page"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+              </div>
+            </footer>
+          </section>
+
+          <p class="page-footnote"><i class="bi bi-info-circle" aria-hidden="true"></i> Account data last synced <span>just now</span></p>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal fade" id="addAccountModal" tabindex="-1" aria-labelledby="addAccountTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content account-modal">
+          <form id="add-account-form">
+            <div class="modal-header">
+              <div><div class="eyebrow"><span class="eyebrow-line"></span> NEW RELATIONSHIP</div><h2 class="modal-title" id="addAccountTitle">Add an account</h2></div>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <label class="form-label" for="new-name">Account name</label>
+              <input class="form-control" id="new-name" name="name" required maxlength="60" placeholder="e.g. Cedar & Co.">
+              <label class="form-label mt-3" for="new-email">Contact email</label>
+              <input class="form-control" id="new-email" name="email" type="email" required placeholder="name@company.com">
+              <div class="row g-3 mt-0">
+                <div class="col-6"><label class="form-label" for="new-plan">Plan</label><select class="form-select" id="new-plan" name="plan"><option>Starter</option><option selected>Growth</option><option>Scale</option></select></div>
+                <div class="col-6"><label class="form-label" for="new-mrr">Monthly spend</label><div class="input-group"><span class="input-group-text">$</span><input class="form-control" id="new-mrr" name="mrr" type="number" min="0" step="1" value="250" required></div></div>
+              </div>
+              <div class="row g-3 mt-0">
+                <div class="col-6"><label class="form-label" for="new-renewal">Next invoice</label><input class="form-control" id="new-renewal" name="renewal" type="date" required></div>
+                <div class="col-6"><label class="form-label" for="new-status">Status</label><select class="form-select" id="new-status" name="status"><option selected>Active</option><option>Trial</option><option>Past due</option><option>Paused</option></select></div>
+              </div>
+            </div>
+            <div class="modal-footer"><button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button><button class="btn btn-add" type="submit"><i class="bi bi-plus-lg" aria-hidden="true"></i>Add account</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
